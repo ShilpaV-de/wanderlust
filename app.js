@@ -105,6 +105,8 @@ app.get("/demouser", async (req, res) => {
    res.send(registeredUser);
 });
 
+app.get("/", listingController.index);
+
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter)
@@ -122,6 +124,8 @@ app.use((err,req,res,next) => {
 
 
 // Server
-app.listen(8080, () => {
-  console.log("server is listening to port 8080");
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
 });
